@@ -140,10 +140,10 @@ body{padding:10px}
 <h3>🏫 Selamat Datang</h3>
 <p>Silakan login untuk masuk ke Data Siswa</p>
 <input id="username"
-placeholder="👤 Username"><br>
+placeholder="👤 Username (Bebas)"><br>
 <input id="password"
 type="password"
-placeholder="🔑 Password"><br>
+placeholder="🔑 Password (Bebas)"><br>
 <button onclick="login()">🚀 Login</button>
 </div>
 <div id="app" style="display:none">
@@ -207,17 +207,20 @@ oninput="tampil()">
 <script>
 let siswa=JSON.parse(localStorage.siswa||"[]");
 let editIndex=-1;
+
 function login(){
-let u=username.value,p=password.value;
-if(u=="112233"&&p=="i dan p"){
-loginBox.style.display="none";
-app.style.display="block";
-alert("✅ Login berhasil!");
-tampil();
-}else{
-alert("❌ Username atau password salah!");
+  let u = username.value.trim(), p = password.value.trim();
+  
+  if(u !== "" && p !== ""){
+    loginBox.style.display = "none";
+    app.style.display = "block";
+    alert("✅ Login berhasil! Selamat bekerja.");
+    tampil();
+  } else {
+    alert("⚠️ Harap isi username dan password (bisa diisi bebas/asal)!");
+  }
 }
-}
+
 function logout(){
 app.style.display="none";
 loginBox.style.display="block";
